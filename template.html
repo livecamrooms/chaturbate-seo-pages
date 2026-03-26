@@ -3,105 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{NICHE_TITLE}} – Live Cams | #{{NICHE_TAG}}</title>
-    <meta name="description" content="{{NICHE_DESC}} – watch live shows right now. Free to watch, no signup required!">
+    <title data-niche-title>#feet Live Cams - Feet Fetish Girls Online Now</title>
+    <meta name="description" content="Watch live #feet cams right now! 100+ girls showing soles, toes, nylons, footjobs & more. Join FREE! HD cams only.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="#feet Live Cams - Feet Girls Online">
+    <meta property="og:description" content="Live foot fetish cams streaming now!">
+    <meta property="og:image" content="https://yourdomain.com/og-feet.jpg">
+    <meta property="og:url" content="https://yourusername.github.io/chaturbate-seo-pages/niches/1-feet.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "#feet Live Cams",
+        "description": "Live foot fetish cam shows",
+        "provider": {
+            "@type": "Organization",
+            "name": "Chaturbate Affiliates"
+        }
+    }
+    </script>
+    
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="icon" href="../favicon.ico">
 </head>
 <body>
+    <!-- Enhanced Header with Breadcrumbs -->
+    <nav class="breadcrumbs">
+        <a href="../index.html">🏠 Home</a> > <span data-niche-name>Feet Girls</span>
+    </nav>
+    
     <header>
-        <h1>{{NICHE_ICON}} {{NICHE_TITLE}}</h1>
-        <p>Watch live {{NICHE_TAG}} shows – real girls, real time</p>
-        <div class="stats">
-            <span id="online-count">--</span> girls online now
+        <h1 data-niche-icon>👣</h1>
+        <h2 data-niche-title>#feet Live Cams Online Now</h2>
+        <div class="stats-bar">
+            <span id="online-count">-</span> live cams | 
+            <span id="hd-count">-</span> HD cams
         </div>
     </header>
 
-    <div id="loading">Loading live cams...</div>
-    <div id="error" style="display: none;" class="error"></div>
-    <div id="cams-container" class="cams-grid" style="display: none;"></div>
+    <!-- Filters -->
+    <div class="filters">
+        <button onclick="fetchCams('public')">Public Shows</button>
+        <button onclick="fetchCams('hd')">HD Only</button>
+        <button onclick="sortByViewers()">Most Viewers</button>
+    </div>
 
+    <div id="loading">🔄 Loading live cams... (0/100)</div>
+    <div id="error" style="display: none;"></div>
+    
+    <div id="cams-container" class="cams-grid"></div>
+
+    <!-- PWA Install Prompt -->
+    <div id="install-prompt" class="install-prompt">
+        <p>💾 Install for offline access</p>
+        <button onclick="installPWA()">Install</button>
+    </div>
+
+    <script src="../js/app.js"></script>
     <script>
-        // === CONFIGURATION ===
-        const NICHE_TAG = '{{NICHE_TAG}}';
-        const YOUR_AFFILIATE_ID = 'T2CSW'; // replace with your own Chaturbate affiliate ID
-
-        // === JSONP helper ===
-        function jsonp(url, callbackName) {
-            return new Promise((resolve, reject) => {
-                const script = document.createElement('script');
-                const callback = 'jsonp_callback_' + Math.round(100000 * Math.random());
-                window[callback] = function(data) {
-                    delete window[callback];
-                    document.body.removeChild(script);
-                    resolve(data);
-                };
-                script.src = `${url}&callback=${callback}`;
-                script.onerror = () => {
-                    delete window[callback];
-                    document.body.removeChild(script);
-                    reject(new Error('JSONP request failed'));
-                };
-                document.body.appendChild(script);
-            });
-        }
-
-        async function fetchCams() {
-            try {
-                document.getElementById('loading').style.display = 'block';
-                document.getElementById('error').style.display = 'none';
-                document.getElementById('cams-container').style.display = 'none';
-
-                const url = `https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=${YOUR_AFFILIATE_ID}&client_ip=request_ip&format=json&limit=100&tag=${NICHE_TAG}&hd=true`;
-                const data = await jsonp(url, 'jsonp_callback');
-
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('cams-container').style.display = 'grid';
-                document.getElementById('online-count').textContent = data.count || 0;
-
-                const container = document.getElementById('cams-container');
-                container.innerHTML = '';
-
-                if (!data.results || data.results.length === 0) {
-                    container.innerHTML = '<p class="error">No live cams for this niche right now. Check back soon!</p>';
-                    return;
-                }
-
-                data.results.slice(0, 24).forEach(room => {
-                    const cam = document.createElement('div');
-                    cam.className = 'cam-card';
-                    cam.innerHTML = `
-                        <div class="cam-image">
-                            <img src="${room.image_url_360x270 || ''}" alt="${room.room_subject || room.username}" loading="lazy">
-                            <div class="cam-overlay">
-                                <span class="viewers">👥 ${room.num_users || 0}</span>
-                                ${room.is_hd ? '<span class="hd">HD</span>' : ''}
-                            </div>
-                        </div>
-                        <div class="cam-info">
-                            <h4>${room.username}</h4>
-                            <p class="subject">${room.room_subject || ''}</p>
-                            <div class="tags">
-                                ${(room.tags || []).slice(0, 3).map(tag => `<span>#${tag}</span>`).join('')}
-                            </div>
-                            <div class="stats">
-                                <span>❤️ ${(room.num_followers || 0).toLocaleString()}</span>
-                                <span>🎂 ${room.age || '?'}yo</span>
-                            </div>
-                            <a href="${room.chat_room_url}" target="_blank" rel="noopener noreferrer" class="join-btn">Watch Live</a>
-                        </div>
-                    `;
-                    container.appendChild(cam);
-                });
-            } catch (err) {
-                console.error(err);
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('error').style.display = 'block';
-                document.getElementById('error').textContent = 'Failed to load cams. Please refresh the page.';
-            }
-        }
-
-        fetchCams();
-        setInterval(fetchCams, 60000); // refresh every minute
+        // Niche-specific config
+        window.NICHE_CONFIG = {
+            tag: 'feet',
+            title: 'Feet Girls Live Cams',
+            icon: '👣',
+            description: 'Live foot fetish cams - soles, toes, nylons & more!'
+        };
     </script>
 </body>
 </html>
