@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Cam Girls – Find Your Favorite Niche</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>🔥 Live Cam Girls – All Niches</h1>
+        <p>Discover thousands of live performers in your favorite categories</p>
+    </header>
+
+    <div id="niche-grid" class="niche-grid"></div>
+
+    <script>
+        const niches = [
+            { name: "Feet Lovers",   slug: "feet",      icon: "👣" },
+            { name: "BDSM",          slug: "bdsm",      icon: "🔗" },
+            { name: "Anal Play",     slug: "anal",      icon: "🍑" },
+            { name: "Squirt",        slug: "squirt",    icon: "💦" },
+            { name: "Big Boobs",     slug: "bigboobs",  icon: "🍈" },
+            { name: "Asian",         slug: "asia",      icon: "🇯🇵" },
+            { name: "MILF",          slug: "milf",      icon: "👩‍🦳" },
+            { name: "Teen",          slug: "teen",      icon: "👧" },
+            { name: "Ebony",         slug: "ebony",     icon: "🇧🇷" },
+            { name: "Latina",        slug: "latina",    icon: "🇲🇽" },
+            { name: "BBW",           slug: "bbw",       icon: "💪" },
+            { name: "Hairy",         slug: "hairy",     icon: "🌿" },
+            { name: "Pregnant",      slug: "pregnant",  icon: "🤰" },
+            { name: "Roleplay",      slug: "roleplay",  icon: "🎭" },
+            { name: "Cosplay",       slug: "cosplay",   icon: "🎮" },
+            { name: "Lesbian",       slug: "lesbian",   icon: "👭" },
+            { name: "Thick",         slug: "thick",     icon: "🍑" },
+            { name: "Petite",        slug: "petite",    icon: "👧" },
+            { name: "Blonde",        slug: "blonde",    icon: "💇‍♀️" },
+            { name: "Brunette",      slug: "brunette",  icon: "🖤" },
+            { name: "Redhead",       slug: "redhead",   icon: "🔥" },
+            { name: "Tattoo",        slug: "tattoo",    icon: "💉" },
+            { name: "Piercing",      slug: "piercing",  icon: "💎" },
+            { name: "Smoking",       slug: "smoking",   icon: "🚬" },
+            { name: "Drinking",      slug: "drinking",  icon: "🍸" },
+            { name: "Dancing",       slug: "dancing",   icon: "💃" },
+            { name: "Twerking",      slug: "twerking",  icon: "🍑" },
+            { name: "Oil Show",      slug: "oil",       icon: "🛢️" },
+            { name: "Lingerie",      slug: "lingerie",  icon: "👙" },
+            { name: "Stockings",     slug: "stockings", icon: "🧦" },
+            { name: "Heels",         slug: "heels",     icon: "👠" },
+            { name: "Pantyhose",     slug: "pantyhose", icon: "🩲" },
+            { name: "Nylon",         slug: "nylon",     icon: "🧦" },
+            { name: "Leather",       slug: "leather",   icon: "🖤" },
+            { name: "Latex",         slug: "latex",     icon: "✨" },
+            { name: "Rubber",        slug: "rubber",    icon: "🖤" },
+            { name: "Fetish",        slug: "fetish",    icon: "🔗" },
+            { name: "Domination",    slug: "domination",icon: "👑" },
+            { name: "Submission",    slug: "submission",icon: "🙇‍♀️" },
+            { name: "Humiliation",   slug: "humiliation",icon:"😳" },
+            { name: "SPH",           slug: "sph",       icon: "📏" },
+            { name: "Cuckold",       slug: "cuckold",   icon: "👥" },
+            { name: "JOI",           slug: "joi",       icon: "👋" },
+            { name: "CEI",           slug: "cei",       icon: "🍽️" },
+            { name: "Findom",        slug: "findom",    icon: "💰" },
+            { name: "Goth",          slug: "goth",      icon: "🖤" },
+            { name: "Emo",           slug: "emo",       icon: "🖤" },
+            { name: "Punk",          slug: "punk",      icon: "🔥" },
+            { name: "Nerdy",         slug: "nerdy",     icon: "🤓" },
+            { name: "Virtual Reality", slug: "vr",      icon: "🥽" }
+        ];
+
+        const grid = document.getElementById('niche-grid');
+        niches.forEach((niche, index) => {
+            const card = document.createElement('div');
+            card.className = 'niche-card';
+            card.innerHTML = `
+                <a href="niches/${index + 1}-${niche.slug}.html">
+                    <div class="niche-icon">${niche.icon}</div>
+                    <h3>${niche.name}</h3>
+                    <p>Live now →</p>
+                </a>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
